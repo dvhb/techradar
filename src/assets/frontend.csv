@@ -1,0 +1,7 @@
+name,ring,quadrant,isNew,description
+React,adopt,Languages & Frameworks,FALSE,
+Redux,adopt,Data Management,FALSE,
+webpack,adopt,Platform & Infrastructure,FALSE,
+Mobx-state-tree,assess,Data Management,TRUE,We try technology on a commercial project
+Cypress,assess,Techniques & Tools,TRUE,Compare Puppeteer and Cypress on several company projects
+Puppeteer,assess,Techniques & Tools,TRUE,Compare Puppeteer and Cypress on several company projects

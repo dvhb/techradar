@@ -151,10 +151,11 @@ const GoogleSheet = function (sheetReference, sheetName) {
   return self
 }
 
-const CSVDocument = function (url) {
+const CSVDocument = function (url, title) {
   var self = {}
 
   self.build = function () {
+    d3.selectAll('.loading').remove()
     d3.csv(url, createBlips)
   }
 
@@ -166,7 +167,7 @@ const CSVDocument = function (url) {
       contentValidator.verifyContent()
       contentValidator.verifyHeaders()
       var blips = _.map(data, new InputSanitizer().sanitize)
-      plotRadar(FileName(url), blips, 'CSV File', [])
+      plotRadar(title, blips, 'CSV File', [])
     } catch (exception) {
       plotErrorMessage(exception)
     }
@@ -229,6 +230,18 @@ const GoogleSheetInput = function () {
       plotForm(content)
 
       plotFooter(content)
+    }
+  }
+
+  self.buildDvhb = function (radars) {
+    var queryString = window.location.pathname !== '/'
+      ? window.location.pathname.match(/\/(.*)/)
+      : window.location.href.match(/\?(.*)/)
+    var radarId = queryString ? queryString[1] : null
+
+    if (radarId && radars[radarId]) {
+      sheet = CSVDocument(radars[radarId].sheetId, radars[radarId].title)
+      sheet.init().build()
     }
   }
 

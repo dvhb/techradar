@@ -1,6 +1,6 @@
 {
-  "name": "build-your-own-radar",
-  "version": "0.3.0",
+  "name": "@dvhb/techradar",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,19 +11,21 @@
     "end_to_end_test": "node_modules/.bin/cypress run --env host=$TEST_URL",
     "start": "node_modules/.bin/cypress open --env host=$TEST_URL"
   },
-  "author": "ThoughtWorks",
+  "author": "dvhb",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thoughtworks/build-your-own-radar"
+    "url": "https://github.com/dvhb/techradar"
   },
   "keywords": [
-    "tech-radar"
+    "tech-radar",
+    "dvhb"
   ],
   "license": "AGPL-3.0",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "babel-loader": "^8.0.4",
     "babel-preset-env": "^1.7.0",
+    "copy-webpack-plugin": "^5.0.3",
     "css-loader": "^2.0.1",
     "cssnano": "^4.1.7",
     "cypress": "^3.2.0",
