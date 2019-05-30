@@ -1,0 +1,23 @@
+variables:
+  WORKSPACE: /w/techradar
+
+stages:
+  - update
+  - deploy
+
+update_local_repo:
+  stage: update
+  script:
+    - cd $WORKSPACE/website
+    - git pull
+  tags:
+    - dip-shell-runner
+
+deploy:
+  stage: deploy
+  tags:
+    - dip-shell-runner
+  script:
+    - cd $WORKSPACE/techradar
+    - docker-compose build
+    - docker-compose up -d
