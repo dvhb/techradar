@@ -8,8 +8,7 @@ stages:
 update_local_repo:
   stage: update
   script:
-    - cd $WORKSPACE/website
-    - git pull
+    - ssh-agent bash -c 'ssh-add $WORKSPACE/deploy.key; cd $WORKSPACE/website; git pull'
   tags:
     - dip-shell-runner
 
