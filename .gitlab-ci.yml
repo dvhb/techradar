@@ -18,6 +18,6 @@ deploy:
   tags:
     - dip-shell-runner
   script:
-    - cd $WORKSPACE/techradar
+    - cd $WORKSPACE
     - docker-compose build
     - docker-compose up -d
