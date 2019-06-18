@@ -19,4 +19,4 @@ const radars = {
   }
 }
 
-GoogleSheetInput().buildDvhb(radars)
+GoogleSheetInput().build(radars)

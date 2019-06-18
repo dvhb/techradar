@@ -181,67 +181,27 @@ const CSVDocument = function (url, title) {
   return self
 }
 
-const DomainName = function (url) {
-  var search = /.+:\/\/([^\\/]+)/
-  var match = search.exec(decodeURIComponent(url.replace(/\+/g, ' ')))
-  return match == null ? null : match[1]
-}
-
-const FileName = function (url) {
-  var search = /([^\\/]+)$/
-  var match = search.exec(decodeURIComponent(url.replace(/\+/g, ' ')))
-  if (match != null) {
-    var str = match[1]
-    return str
-  }
-  return url
-}
-
 const GoogleSheetInput = function () {
   var self = {}
   var sheet
 
-  self.build = function () {
-    var domainName = DomainName(window.location.search.substring(1))
-    var queryString = window.location.href.match(/sheetId(.*)/)
-    var queryParams = queryString ? QueryParams(queryString[0]) : {}
-
-    if (domainName && queryParams.sheetId.endsWith('csv')) {
-      sheet = CSVDocument(queryParams.sheetId)
-      sheet.init().build()
-    } else if (domainName && domainName.endsWith('google.com') && queryParams.sheetId) {
-      sheet = GoogleSheet(queryParams.sheetId, queryParams.sheetName)
-      console.log(queryParams.sheetName)
-
-      sheet.init().build()
-    } else {
-      var content = d3.select('body')
-        .append('div')
-        .attr('class', 'input-sheet')
-      setDocumentTitle()
-
-      plotLogo(content)
-
-      var bannerText = '<div><h1>Build your own radar</h1><p>Once you\'ve <a href ="https://www.thoughtworks.com/radar/byor">created your Radar</a>, you can use this service' +
-        ' to generate an <br />interactive version of your Technology Radar. Not sure how? <a href ="https://www.thoughtworks.com/radar/how-to-byor">Read this first.</a></p></div>'
-
-      plotBanner(content, bannerText)
-
-      plotForm(content)
-
-      plotFooter(content)
-    }
-  }
-
-  self.buildDvhb = function (radars) {
+  self.build = function (radars) {
     var queryString = window.location.pathname !== '/'
       ? window.location.pathname.match(/\/(.*)/)
       : window.location.href.match(/\?(.*)/)
     var radarId = queryString ? queryString[1] : null
 
+    var title = radarId ? radars[radarId].title : 'Dvhb Tech Radar'
+
+    var content = d3.select('body').append('div')
+    plotHeader(content, title)
+    plotDepartments(content, radars)
+
     if (radarId && radars[radarId]) {
       sheet = CSVDocument(radars[radarId].sheetId, radars[radarId].title)
       sheet.init().build()
+    } else {
+      setDocumentTitle()
     }
   }
 
@@ -249,7 +209,7 @@ const GoogleSheetInput = function () {
 }
 
 function setDocumentTitle () {
-  document.title = 'Build your own Radar'
+  document.title = 'Dvhb Tech Radar'
 }
 
 function plotLoading (content) {
@@ -291,30 +251,6 @@ function plotBanner (content, text) {
   content.append('div')
     .attr('class', 'input-sheet__banner')
     .html(text)
-}
-
-function plotForm (content) {
-  content.append('div')
-    .attr('class', 'input-sheet__form')
-    .append('p')
-    .html('<strong>Enter the URL of your <a href="https://www.thoughtworks.com/radar/how-to-byor" target="_blank">Google Sheet or CSV</a> file below…</strong>')
-
-  var form = content.select('.input-sheet__form').append('form')
-    .attr('method', 'get')
-
-  form.append('input')
-    .attr('type', 'text')
-    .attr('name', 'sheetId')
-    .attr('placeholder', 'e.g. https://docs.google.com/spreadsheets/d/<sheetid> or hosted CSV file')
-    .attr('required', '')
-
-  form.append('button')
-    .attr('type', 'submit')
-    .append('a')
-    .attr('class', 'button')
-    .text('Build my radar')
-
-  form.append('p').html("<a href='https://www.thoughtworks.com/radar/how-to-byor'>Need help?</a>")
 }
 
 function plotErrorMessage (exception) {
@@ -404,6 +340,78 @@ function plotUnauthorizedErrorMessage () {
     sheet.authenticate(true, _ => {
       content.remove()
     })
+  })
+}
+
+function plotHeader (content, title) {
+  const baseUrl = 'https://dvhb.com'
+
+  const links = [
+    {
+      title: 'Projects',
+      href: baseUrl + '/#projects'
+    },
+    {
+      title: 'Approach',
+      href: baseUrl + '/approach'
+    },
+    {
+      title: 'Team',
+      href: baseUrl + '/team'
+    },
+    {
+      title: 'Contact',
+      href: baseUrl + '/contacts'
+    },
+    {
+      title: 'Blog',
+      href: baseUrl + '/blog'
+    }
+  ]
+
+  const header = content.append('header')
+    .attr('class', 'header')
+    .insert('nav')
+    .attr('class', 'container header__nav')
+
+  header.insert('a')
+    .attr('class', 'header__logo')
+    .attr('href', baseUrl)
+    .insert('img')
+    .attr('src', '/images/logo.svg')
+
+  const menu = header.insert('ul')
+    .attr('class', 'nav-menu')
+
+  links.forEach(link => {
+    menu.insert('li')
+      .attr('class', 'nav-menu__item')
+      .insert('a')
+      .attr('class', 'nav-menu__link')
+      .attr('href', link.href)
+      .html(link.title)
+  })
+
+  content.append('div')
+    .attr('class', 'container')
+    .insert('h1')
+    .html(title)
+}
+
+function plotDepartments (content, radars) {
+  const isDev = process.env.NODE_ENV === 'development'
+  const container = content.append('div')
+    .attr('class', 'container')
+
+  Object.keys(radars).forEach(department => {
+    const href = isDev ? `/?${department}` : `/${department}`
+    const isActive = window.location.href.includes(href)
+
+    container
+      .insert('a')
+      .attr('href', href)
+      .attr('class', `button button_department ${isActive ? 'selected' : ''}`)
+      .html(department)
   })
 }
 
