@@ -5,12 +5,43 @@
 @import 'error';
 @import 'header';
 @import 'footer';
-@import url(https://www.thoughtworks.com/css/screen.css);
+//@import url(https://www.thoughtworks.com/css/screen.css);
 
 body {
-  font: 18px 'Open Sans';
-  -webkit-font-smoothing: antialiased;
   margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: "Formular", "Open Sans", sans-serif;
+  -webkit-text-size-adjust: 100%; // ios font-size fix
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+input {
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid #aaa;
+
+  &:focus {
+    border-color: #5BA9E1;
+  }
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.container {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 @media print {

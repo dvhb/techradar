@@ -303,7 +303,9 @@ const Radar = function (size, radar) {
   function createHomeLink (pageElement) {
     if (pageElement.select('.home-link').empty()) {
       pageElement.insert('div', 'div#alternative-buttons')
-        .html('&#171; Back to Radar home')
+        .classed('home-link-wrapper', true)
+        .insert('div')
+        .html('Back to Radar home')
         .classed('home-link', true)
         .classed('selected', true)
         .on('click', redrawFullRadar)
@@ -430,20 +432,9 @@ const Radar = function (size, radar) {
   }
 
   function plotRadarHeader () {
-    header = d3.select('body').insert('header', '#radar')
-    header.append('div')
-      .attr('class', 'radar-title')
-      .append('div')
-      .attr('class', 'radar-title__text')
-      .append('h1')
-      .text(document.title)
-      .style('cursor', 'pointer')
-      .on('click', redrawFullRadar)
-
-    // header.select('.radar-title')
-    //   .append('div')
-    //   .attr('class', 'radar-title__logo')
-    //   .html('<a href="https://www.thoughtworks.com"> <img src="/images/logo.png" /> </a>')
+    header = d3.select('body')
+      .insert('div', '#radar')
+      .classed('radar-header', true)
 
     buttonsGroup = header.append('div')
       .classed('buttons-group', true)
@@ -500,16 +491,6 @@ const Radar = function (size, radar) {
     })
   }
 
-  function plotRadarFooter () {
-    d3.select('body')
-      .insert('div', '#radar-plot + *')
-      .attr('id', 'footer')
-      .append('div')
-      .attr('class', 'footer-content')
-      .append('p')
-      .html('Powered by <a href="https://www.thoughtworks.com"> ThoughtWorks</a>. This software is <a href="https://github.com/dvhb/techradar">open source</a> and available for download and self-hosting.')
-  }
-
   function mouseoverQuadrant (order) {
     d3.select('.quadrant-group-' + order).style('opacity', 1)
     d3.selectAll('.quadrant-group:not(.quadrant-group-' + order + ')').style('opacity', 0.3)
@@ -521,7 +502,7 @@ const Radar = function (size, radar) {
 
   function selectQuadrant (order, startAngle) {
     d3.selectAll('.home-link').classed('selected', false)
-    createHomeLink(d3.select('header'))
+    createHomeLink(d3.select('.radar-header'))
 
     d3.selectAll('.button').classed('selected', false).classed('full-view', false)
     d3.selectAll('.button.' + order).classed('selected', true)
@@ -630,8 +611,6 @@ const Radar = function (size, radar) {
       plotTexts(quadrantGroup, rings, quadrant)
       plotBlips(quadrantGroup, rings, quadrant)
     })
-
-    plotRadarFooter()
   }
 
   return self

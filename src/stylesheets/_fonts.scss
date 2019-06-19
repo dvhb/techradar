@@ -1,2 +1,16 @@
-$baseFont: 17px;
+@font-face {
+  font-family: "Formular";
+  src: url("/fonts/Formular/formular-regular.woff2") format("woff2"),
+  url("/fonts/Formular/formular-regular.woff") format("woff");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Formular";
+  src: url("/fonts/Formular/formular-bold.woff2") format("woff2"),
+  url("/fonts/Formular/formular-bold.woff") format("woff");
+  font-weight: 700;
+}
+
+$baseFont: 14px;
 $baseWeight: 100;

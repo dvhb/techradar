@@ -1,4 +1,92 @@
-header {
+.button {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-right: 8px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s ease-out;
+  box-shadow: inset 0 0 0 1px $black;
+  background-color: transparent;
+  color: $black;
+  min-width: 220px;
+  text-transform: capitalize;
+  text-decoration: none;
+
+  &.no-capitalize {
+    text-transform: none;
+  }
+
+  &:hover, &.selected {
+    opacity: .8;
+
+    &.first {
+      color: white;
+      box-shadow: none;
+      background-color: $green;
+    }
+
+    &.second {
+      color: white;
+      box-shadow: none;
+      background-color: $blue;
+    }
+
+    &.third {
+      color: white;
+      box-shadow: none;
+      background-color: $orange;
+    }
+
+    &.fourth {
+      color: white;
+      box-shadow: none;
+      background-color: $violet;
+    }
+  }
+
+  &.full-view {
+
+    &.first {
+      box-shadow: none;
+      background-color: $green;
+      color: $white;
+    }
+
+    &.second {
+      box-shadow: none;
+      background-color: $blue;
+      color: $white;
+    }
+
+    &.third {
+      box-shadow: none;
+      background-color: $orange;
+      color: $white;
+    }
+
+    &.fourth {
+      box-shadow: none;
+      background-color: $violet;
+      color: $white;
+    }
+  }
+
+  &_department {
+    min-width: 160px;
+
+    &:hover,
+    &.selected {
+      opacity: 1;
+      background-color: $black;
+      color: $white;
+    }
+  }
+}
+
+.radar-header {
   text-align: center;
 
   .radar-title, .buttons-group, #alternative-buttons {
@@ -66,84 +154,38 @@ header {
   }
 
   .buttons-group {
-    padding: 15px 0 25px;
+    //padding: 15px 0 25px;
+    padding: 8px 0;
+  }
+
+  .home-link-wrapper {
+    text-align: left;
+    margin: 0 10%;
   }
 
   .home-link {
-    color: $pink;
-    margin-bottom: 10px;
-    line-height: normal;
-    cursor: pointer;
     display: inline-block;
-    font-size: $baseFont;
+    margin-top: 8px;
+    padding-left: 36px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #5BA9E1;
     text-align: left;
-    width: 80%;
+    cursor: pointer;
+    background-image: url("/images/arrow.svg");
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: 0;
   }
 
-  .button {
-    font-size: $baseFont;
-    text-transform: capitalize;
-    margin-right: 20px;
-    border-radius: 2px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: all .2s ease-out;
-
-    background-color: $grey-light;
-    color: $black;
-
-    &.no-capitalize {
-      text-transform: none;
-    }
-
-    &:hover, &.selected {
-
-      transform: translate(0, -2px);
-      opacity: .85;
-
-      &.first {
-        color: white;
-        background-color: $green;
-      }
-
-      &.second {
-        color: white;
-        background-color: $blue;
-      }
-
-      &.third {
-        color: white;
-        background-color: $orange;
-      }
-
-      &.fourth {
-        color: white;
-        background-color: $violet;
-      }
-    }
-
-    &.full-view {
-
-      &.first {
-        background-color: $green;
-        color: $white;
-      }
-
-      &.second {
-        background-color: $blue;
-        color: $white;
-      }
-
-      &.third {
-        background-color: $orange;
-        color: $white;
-      }
-
-      &.fourth {
-        background-color: $violet;
-        color: $white;
-      }
-    }
+  .print-radar {
+    min-width: 40px;
+    margin-right: 0;
+    font-size: 0;
+    background-image: url("/images/print.svg");
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: 8px;
   }
 
   #alternative-buttons {
@@ -166,16 +208,14 @@ header {
     }
 
     .search-radar {
-      border: 1px solid #aaa;
+      width: 240px;
+      padding: 9px 40px;
+      border-radius: 4px;
       background-color: inherit;
-      background-image: url("/images/search-logo-2x.svg");
+      background-image: url("/images/search.svg");
       background-repeat: no-repeat;
-      background-position: 10px;
-    }
-
-    input {
-      padding-left: 35px;
-      width: 275px;
+      background-size: 24px;
+      background-position: 8px;
     }
   }
 }
@@ -190,6 +230,53 @@ header {
 
     .ui-menu-item-wrapper {
       padding: 5px 10px;
+    }
+  }
+}
+
+.header {
+  background-color: #212126;
+  background-image: url("/images/header_bg.svg");
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+
+  &__nav {
+    display: flex;
+  }
+
+  &__logo {
+    display: inline-block;
+    width: 94px;
+    height: 32px;
+    margin: 24px 196px 28px 0;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.nav-menu {
+  list-style: none;
+  margin: 32px 0;
+  padding: 0;
+  display: flex;
+
+  &__item + &__item {
+    margin-left: 40px;
+  }
+
+  &__link {
+    color: $white;
+    font-weight: 700;
+    text-transform: uppercase;
+    opacity: 0.3;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
     }
   }
 }
