@@ -7,6 +7,8 @@ stages:
 
 update_local_repo:
   stage: update
+  only:
+    - master
   script:
     - ssh-agent bash -c 'ssh-add $WORKSPACE/deploy.key; cd $WORKSPACE/website; git pull'
   tags:
@@ -14,6 +16,8 @@ update_local_repo:
 
 deploy:
   stage: deploy
+  only:
+    - master
   tags:
     - dip-shell-runner
   script:
