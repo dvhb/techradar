@@ -389,6 +389,7 @@ function plotHeader (content, title) {
       .insert('a')
       .attr('class', 'nav-menu__link')
       .attr('href', link.href)
+      .attr('target', '_blank')
       .html(link.title)
   })
 
