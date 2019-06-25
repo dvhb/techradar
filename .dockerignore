@@ -14,3 +14,6 @@ dist
 .DS_Store
 
 npm-debug.log*
+
+# Thereis no need for git configuration in docker image
+.git

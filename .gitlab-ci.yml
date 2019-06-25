@@ -1,26 +1,47 @@
 variables:
-  WORKSPACE: /w/techradar
+  WORKSPACE_DEV: /w/techradar
+  WORKSPACE_PROD: /w/techradar-prod
 
 stages:
   - update
   - deploy
 
-update_local_repo:
+update_local_repo_dev:
   stage: update
   only:
     - master
   script:
-    - ssh-agent bash -c 'ssh-add $WORKSPACE/deploy.key; cd $WORKSPACE/website; git pull'
+    - ssh-agent bash -c 'ssh-add $WORKSPACE_DEV/deploy.key; cd $WORKSPACE_DEV/website; git pull'
   tags:
     - dip-shell-runner
 
-deploy:
+update_local_repo_prod:
+  stage: update
+  only:
+    - tags
+  script:
+    - ssh-agent bash -c 'ssh-add $WORKSPACE_PROD/deploy.key; cd $WORKSPACE_PROD/website; git pull; git checkout $CI_COMMIT_TAG'
+  tags:
+    - dip-shell-runner
+
+deploy_dev:
   stage: deploy
   only:
     - master
   tags:
     - dip-shell-runner
   script:
-    - cd $WORKSPACE
-    - docker-compose build
+    - cd $WORKSPACE_DEV
+    - docker-compose build --no-cache
+    - docker-compose up -d
+
+deploy_prod:
+  stage: deploy
+  only:
+    - tags
+  tags:
+    - dip-shell-runner
+  script:
+    - cd $WORKSPACE_PROD
+    - docker-compose build --no-cache
     - docker-compose up -d
