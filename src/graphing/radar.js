@@ -384,7 +384,7 @@ const Radar = function (size, radar) {
 
     svg.style('left', 0).style('right', 0)
 
-    d3.selectAll('.button')
+    d3.selectAll('.button:not(.button_department)')
       .classed('selected', false)
       .classed('full-view', true)
 
@@ -472,6 +472,14 @@ const Radar = function (size, radar) {
       .classed('print-radar button no-capitalize', true)
       .text('Print this radar')
       .on('click', window.print.bind(window))
+      .append('svg')
+      .attr('viewBox', '0 0 24 24')
+      .attr('fill-rule', 'evenodd')
+      .append('path')
+      .attr('d', 'M8,8V4h8v4H8z M18,3v5h1.5c1.4,0,2.5,1.1,2.5,2.5v7.2c0,0.7-0.6,1.2-1.2,1.2H18v2c0,0.6-0.4,1-1,1H7\n' +
+        '\tc-0.6,0-1-0.4-1-1v-2H3.2C2.6,19,2,18.4,2,17.8v-7.2C2,9.1,3.1,8,4.5,8H6V3c0-0.6,0.4-1,1-1h10C17.6,2,18,2.4,18,3z M20,17h-2v-2\n' +
+        '\tc0-0.6-0.4-1-1-1H7c-0.6,0-1,0.4-1,1v2H4v-6.5C4,10.2,4.2,10,4.5,10H6h12h1.5c0.3,0,0.5,0.2,0.5,0.5V17z M8,20v-4h8v4H8z M9,11\n' +
+        '\tc0.6,0,1,0.4,1,1s-0.4,1-1,1H7c-0.6,0-1-0.4-1-1s0.4-1,1-1H9z')
 
     alternativeDiv.append('div')
       .classed('search-box', true)
@@ -504,7 +512,7 @@ const Radar = function (size, radar) {
     d3.selectAll('.home-link').classed('selected', false)
     createHomeLink(d3.select('.radar-header'))
 
-    d3.selectAll('.button').classed('selected', false).classed('full-view', false)
+    d3.selectAll('.button:not(.button_department)').classed('selected', false).classed('full-view', false)
     d3.selectAll('.button.' + order).classed('selected', true)
     d3.selectAll('.quadrant-table').classed('selected', false)
     d3.selectAll('.quadrant-table.' + order).classed('selected', true)
