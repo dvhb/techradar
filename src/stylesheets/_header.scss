@@ -2,6 +2,7 @@
   box-sizing: border-box;
   display: inline-block;
   margin-right: 8px;
+  margin-bottom: 8px;
   padding: 10px 16px;
   border-radius: 4px;
   font-weight: 700;
@@ -153,11 +154,6 @@
     margin-right: 10%;
   }
 
-  .buttons-group {
-    //padding: 15px 0 25px;
-    padding: 8px 0;
-  }
-
   .home-link-wrapper {
     text-align: left;
     margin: 0 10%;
@@ -182,10 +178,21 @@
     min-width: 40px;
     margin-right: 0;
     font-size: 0;
-    background-image: url("/images/print.svg");
-    background-repeat: no-repeat;
-    background-size: 24px;
-    background-position: 8px;
+    padding: 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    &:hover {
+      background-color: $black;
+      opacity: 1;
+      fill: $white;
+    }
   }
 
   #alternative-buttons {
@@ -243,13 +250,15 @@
 
   &__nav {
     display: flex;
+    padding-right: 144px;
   }
 
   &__logo {
     display: inline-block;
     width: 94px;
+    min-width: 94px;
     height: 32px;
-    margin: 24px 196px 28px 0;
+    margin: 24px 50px 28px 0;
 
     img {
       width: 100%;
@@ -259,7 +268,7 @@
 
 .nav-menu {
   list-style: none;
-  margin: 32px 0;
+  margin: 32px auto;
   padding: 0;
   display: flex;
 
