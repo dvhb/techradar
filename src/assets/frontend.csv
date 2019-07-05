@@ -1,7 +1,49 @@
 name,ring,quadrant,isNew,description
-React,adopt,Languages & Frameworks,FALSE,
-Redux,adopt,Data Management,FALSE,
-webpack,adopt,Platform & Infrastructure,FALSE,
-Mobx-state-tree,assess,Data Management,TRUE,We try technology on a commercial project
-Cypress,assess,Techniques & Tools,TRUE,Compare Puppeteer and Cypress on several company projects
-Puppeteer,assess,Techniques & Tools,TRUE,Compare Puppeteer and Cypress on several company projects
+D3.js,ADOPT,Data Management,FALSE,
+Leaflet,ADOPT,Data Management,FALSE,
+React Intl,ADOPT,Data Management,FALSE,
+Redux,ADOPT,Data Management,FALSE,
+Turf.js,ADOPT,Data Management,FALSE,
+yup,ADOPT,Data Management,FALSE,Validating forms inputs
+React Final Form,ASSESS,Data Management,TRUE,Moving from redux-form because of performance reason
+GraphQL,ASSESS,Data Management,TRUE,Trying to move aggregation data headache to backend side
+Mobx-state-tree,ASSESS,Data Management,TRUE,Trying state manager redux alternative for small apps
+Lodash,HOLD,Data Management,FALSE,Alternatives: ES6 native methods, TS typings, anguscroll.com/just/, 30secondsofcode.org snippets
+Moment.js,HOLD,Data Management,FALSE,Moving to date-fns for time management. For timezones still use Moment.js
+Redux Form,HOLD,Data Management,FALSE,We reject Redux Form in favor of Formik on new projects, also considering Final Form as alternative
+Redux Thunk,HOLD,Data Management,FALSE,Alternatives: mobx, rxjs, custom middlewares
+Formik,TRIAL,Data Management,FALSE,Considering Final Form for performance reason
+i18next,TRIAL,Data Management,TRUE,looking for alternatives for react-intl but after it release 3.0 consider again
+RxJS,ASSESS,Data Management,FALSE,Trying for state management as redux-observable middleware
+Babel,ADOPT,Languages & Frameworks,FALSE,
+Node.js,ADOPT,Languages & Frameworks,FALSE,For server-side rendering
+oclif,ADOPT,Languages & Frameworks,TRUE,Framework for rapid development of cli tools
+React,ADOPT,Languages & Frameworks,FALSE,
+React Native,ADOPT,Languages & Frameworks,FALSE,
+Stylus,ADOPT,Languages & Frameworks,FALSE,
+Typescript,ADOPT,Languages & Frameworks,FALSE,
+Flutter,ASSESS,Languages & Frameworks,TRUE,Looking for project to try
+PostCSS,ASSESS,Languages & Frameworks,TRUE,Autoprefixer only for now, consider to move from stylus
+Svelte,ASSESS,Languages & Frameworks,TRUE,Promising framework, looking for project to try
+flow,HOLD,Languages & Frameworks,FALSE,Project almost died, migrate to TypeScript
+styled components,TRIAL,Languages & Frameworks,FALSE,Pros: styles isolation. Cons: runtime styles, difficult TS typings
+Vue.js,TRIAL,Languages & Frameworks,FALSE,Pure third party libraries, problems with TS typings
+Create React App,ADOPT,Platform & Infrastructure,FALSE,
+dvhb/cli,ADOPT,Platform & Infrastructure,FALSE,
+npm,ADOPT,Platform & Infrastructure,FALSE,
+Sentry,ADOPT,Platform & Infrastructure,FALSE,
+verdaccio,ADOPT,Platform & Infrastructure,TRUE,Using for internal npm packages
+webpack,ADOPT,Platform & Infrastructure,FALSE,
+Razzle,ASSESS,Platform & Infrastructure,TRUE,Tool that abstracts configurations needed for server-side rendering apps
+React Starter Kit,HOLD,Platform & Infrastructure,FALSE,Moving to CRA and Razzle for ssr. It's a boilerplate, not config abstraction
+yarn,HOLD,Platform & Infrastructure,FALSE,Migrate back to npm, because of stability CI reason
+ESLint,ADOPT,Techniques & Tools,FALSE,
+Jest,ADOPT,Techniques & Tools,FALSE,
+Prettier,ADOPT,Techniques & Tools,FALSE,
+Storybook,ADOPT,Techniques & Tools,FALSE,
+Cypress,ASSESS,Techniques & Tools,TRUE,Compare Puppeteer and Cypress on several projects
+Puppeteer,ASSESS,Techniques & Tools,TRUE,Compare Puppeteer and Cypress on several projects
+Styleguidist,HOLD,Techniques & Tools,FALSE,Migrate to Storybook for all projects because of ReactNative supports
+Swagger Codegen,HOLD,Techniques & Tools,FALSE,Unsupported project. Considering GraphQL as alternative
+AngularJS,HOLD,Languages & Frameworks,FALSE,Uses on one legacy project on supports
+TSLint,HOLD,Techniques & Tools,FALSE,Migrate to typescript-eslint
