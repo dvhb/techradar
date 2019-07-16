@@ -3,6 +3,11 @@ WORKDIR /src/build-your-own-radar
 COPY package.json ./
 RUN npm install
 COPY . ./
+
+ARG CLIENT_ID
+ARG CLIENT_SECRET
+ARG TOKEN
+RUN node tools/getData.js
 RUN npm run build
 
 FROM nginx:1.15.9
