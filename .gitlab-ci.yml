@@ -32,7 +32,7 @@ deploy_dev:
     - dip-shell-runner
   script:
     - cd $WORKSPACE_DEV
-    - docker-compose build --build-arg CLIENT_ID=$CLIENT_ID --build-arg CLIENT_SECRET=$CLIENT_SECRET --build-arg TOKEN=$TOKEN--no-cache
+    - docker-compose build --build-arg CLIENT_ID=$CLIENT_ID --build-arg CLIENT_SECRET=$CLIENT_SECRET --build-arg TOKEN=$TOKEN --no-cache
     - docker-compose up -d
 
 deploy_prod:
@@ -43,5 +43,5 @@ deploy_prod:
     - dip-shell-runner
   script:
     - cd $WORKSPACE_PROD
-    - docker-compose build --build-arg CLIENT_ID=$CLIENT_ID --build-arg CLIENT_SECRET=$CLIENT_SECRET --build-arg TOKEN=$TOKEN--no-cache
+    - docker-compose build --build-arg CLIENT_ID=$CLIENT_ID --build-arg CLIENT_SECRET=$CLIENT_SECRET --build-arg TOKEN=$TOKEN --no-cache
     - docker-compose up -d
