@@ -62,7 +62,7 @@
     "d3-tip": "^0.7.1",
     "jquery": "^3.4.0",
     "jquery-ui": "^1.12.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "sanitize-html": "^1.20.0",
     "tabletop": "^1.5.2"
   },
